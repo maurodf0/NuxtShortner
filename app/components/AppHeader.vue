@@ -21,7 +21,7 @@
     <nav>
       <ul class="flex space-x-4">
         <li v-for="link in links" :key="link.id">
-          <NuxtLink :to="link.href" class="text-blue-500 hover:underline">
+          <NuxtLink :to="link.href" class="hover:underline"> 
             {{ link.name }}
           </NuxtLink>
         </li>
