@@ -7,5 +7,5 @@ export default defineNuxtConfig({
   },
 
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase']
+  modules: ['@nuxtjs/tailwindcss',]
 })
