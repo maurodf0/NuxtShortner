@@ -17,7 +17,7 @@
 
 <template>
   <div class="max-w-[1280px] mx-auto p-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold">Nuxt Shortner</h1>
+    <NuxtLink to="/"> …<h5 class="text-2xl font-bold">Nuxt Shortner</h5></NuxtLink>
     <nav>
       <ul class="flex space-x-4">
         <li v-for="link in links" :key="link.id">
