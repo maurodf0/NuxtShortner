@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     compatibilityVersion: 4,
   },
   devtools: { enabled: true },
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase'],
+  modules: ['@nuxtjs/tailwindcss',],
   css: ['@/assets/css/main.css'],
    nitro: {
     compressPublicAssets: true,
