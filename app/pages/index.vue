@@ -4,5 +4,5 @@
 <template>
   <div>
     <Hero />
-    </div>
+   </div>
 </template>
