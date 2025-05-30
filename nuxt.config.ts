@@ -12,7 +12,7 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase'],
+  modules: ['@nuxtjs/tailwindcss', /*'@nuxtjs/supabase'*/],
   css: ['@/assets/css/main.css'],
    nitro: {
     compressPublicAssets: true,
