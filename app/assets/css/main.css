@@ -22,3 +22,12 @@ body::before {
   );
   z-index: -1;
 }
+
+.container {
+  @apply max-w-5xl mx-auto px-5;
+}
+
+.btn {
+  @apply text-white/80 py-2 px-4 rounded-full;
+  background: linear-gradient(88.68deg, #d97706 -36.99%, #f59e0b 111.2%);
+}
