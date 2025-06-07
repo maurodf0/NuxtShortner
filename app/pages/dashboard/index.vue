@@ -11,7 +11,7 @@ const urls = ref<{
 const addLink = (url: string) => {
   console.log('Adding link:', url)
   urls.value.push({
-    shortKey: Math.random().toString(36).substring(2, 15),
+    shortKey: '/' + Math.random().toString(36).substring(2, 8),
     longUrl: url,
     id: Date.now().toString()
   });
