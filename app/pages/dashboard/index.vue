@@ -1,9 +1,22 @@
 <script setup lang="ts">
 
-const links = [
-  { shortKey: '/abcsa', longUrl: 'https://www.google.com', id: '1' },
-  { shortKey: '/ciao', longUrl: 'https://www.google.com/a-very-long-url', id: '2' },
-];
+const urls = ref<{
+  shortKey: string;
+  longUrl: string;
+  id: string;
+}[]>([]);
+
+
+
+const addLink = (url: string) => {
+  console.log('Adding link:', url)
+  urls.value.push({
+    shortKey: Math.random().toString(36).substring(2, 15),
+    longUrl: url,
+    id: Date.now().toString()
+  });
+
+};
 
 </script>
 
@@ -13,14 +26,14 @@ const links = [
     <h1 class="text-4xl font-bold mb-4">Dashboard</h1>
   </section>
   <section class="container mb-10">
-    <LinkForm />
+    <LinkForm @SubmitForm="addLink" />
   </section>
 
-  <section class="container">
+  <section v-if="urls.length > 0" class="container">
     <LinkItem 
     class="mb-4"
-      v-for="link in links" :key="link.id" 
-    :link="link" />
+      v-for="url in urls" :key="url.id" 
+    :link="url" />
   </section>
 </main>
 </template>

@@ -1,12 +1,30 @@
 <script setup lang="ts">
+const url = ref<string>('');
+const links = ref ([{}]);
+
+ console.log(url.value);
+
+const emits = defineEmits(['submitForm']); 
+const submitForm = () => {
+  if (!url.value) {
+    alert('Please enter a URL to shorten');
+    return;
+  }
+  console.log('Submitting form with URL:', url.value);
+
+  emits('submitForm', url.value );
+  url.value = '';
+};
+
 </script>
 
 <template>
       <div class="card">
-      <form class="flex items-center gap-5">
+      <form 
+      @submit.prevent="submitForm" class="flex items-center gap-5">
         <div class="w-5/12">
         <label for="url" class="block mb-2 text-sm font-medium text-gray-300">Enter URL to shorten</label>
-        <input type="text" class="input border p-2 rounded border-white/10 w-full mb-4" placeholder="Enter URL to shorten">
+        <input v-model="url" type="text" class="input border p-2 rounded border-white/10 w-full mb-4" placeholder="Enter URL to shorten">
       </div>
       <div class="w-5/12">
         <label class="block mb-2 text-sm font-medium text-gray-300" for="shortKey" >Short Key</label>
