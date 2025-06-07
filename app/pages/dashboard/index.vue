@@ -1,4 +1,10 @@
 <script setup lang="ts">
+
+const links = [
+  { shortKey: '/abcsa', longUrl: 'https://www.google.com', id: '1' },
+  { shortKey: '/ciao', longUrl: 'https://www.google.com/a-very-long-url', id: '2' },
+];
+
 </script>
 
 <template>
@@ -11,7 +17,10 @@
   </section>
 
   <section class="container">
-    <LinkItem />
+    <LinkItem 
+    class="mb-4"
+      v-for="link in links" :key="link.id" 
+    :link="link" />
   </section>
 </main>
 </template>
