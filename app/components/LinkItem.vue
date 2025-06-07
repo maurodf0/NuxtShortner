@@ -1,11 +1,22 @@
+<script setup lang="ts">
+
+defineProps<{
+  link: {
+    shortKey: string;
+    longUrl: string;
+    id: string;
+  };
+}>();
+</script>
+
 <template>
       <div class="card flex justify-between items-center p-4 gap-4">
       <div class="link-info">
         <div class="text-xl font-bold text-amber-500">
-          /Lmn14hs
+         {{link.shortKey}}
         </div>
         <div class="text-sm text-white/50">
-          https://nuxt-shortner.com/a-very-long-url-that-needs-to-be-shortened
+          {{link.longUrl}}
         </div>
       </div>
 
