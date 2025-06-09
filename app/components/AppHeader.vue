@@ -5,17 +5,6 @@ const supabase = useSupabaseClient();
 console.log('User:', user.value);
 
 
-  interface Links {
-    name: string;
-    href: string;
-    id: number;
-  }
-
-  const links: Links[] = [
-    { name: 'Home', href: '/', id: 1},
-
-  ];
-
   const signOut = async () => {
   const { error } = await supabase.auth.signOut()
   if (error) console.log(error)
@@ -28,22 +17,19 @@ console.log('User:', user.value);
     <NuxtLink to="/"><h5 class="text-2xl font-bold">Nuxt Shortner</h5></NuxtLink>
     <nav>
       <ul class="flex space-x-4 items-center">
-        <li v-for="link in links" :key="link.id">
-          <NuxtLink :to="link.href" class="hover:underline"> 
-            {{ link.name }}
-          </NuxtLink>
+        <li>
+          <NuxtLink to="/">Home</NuxtLink>
         </li>
         <li v-if="user">
-          <NuxtLink @click="signOut">Logout</NuxtLink>
+          <NuxtLink to="/dashboard">Dashboard</NuxtLink>
         </li>
-        <li v-if="user">
-          <NuxtLink to="/dashboard" class="btn">Dashboard</NuxtLink>
-        </li>
-       
         <li v-else>
-          <NuxtLink to="/login" class="btn">Login</NuxtLink>
+          <NuxtLink to="/login">Login</NuxtLink>
         </li>
         
+        <div v-if="user" class="user-meta">
+          <NuxtLink to="/profile"><img :src="user.user_metadata.avatar_url" alt="User Avatar" class="border-2 border-white/20 w-8 h-8 rounded-full"></NuxtLink>
+        </div>
       </ul>
     </nav>
   </div>
