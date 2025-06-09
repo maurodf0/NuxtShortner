@@ -1,13 +1,21 @@
 <script setup>
 
-const supabaseAuth = useSupabaseAuthClient();
+const supabase = useSupabaseClient()
 
-const handleGithubLogin = () => {
-  supabaseAuth.auth.SignInWithOAuth({
+const signInWithOAuth = async () => {
+  const { error } = await supabase.auth.signInWithOAuth({
     provider: 'github',
+    options: {
+      redirectTo: 'http://localhost:3000/confirm',
+    },
   })
+  if (error) console.log(error)
 }
 
+const signOut = async () => {
+  const { error } = await supabase.auth.signOut()
+  if (error) console.log(error)
+}
 </script>
 
 <template>
@@ -15,7 +23,7 @@ const handleGithubLogin = () => {
     <div class="container"> 
 
      <div class="card">
-      <button @click="handleGithubLogin" class="btn py-5 w-full rounded-full"> 
+      <button @click="signInWithOAuth" class="btn py-5 w-full rounded-full"> 
         Continue with Github
       </button>
 
