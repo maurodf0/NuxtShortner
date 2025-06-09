@@ -1,6 +1,7 @@
 <script setup lang="ts">
 
 const user = useSupabaseUser();
+const supabase = useSupabaseClient();
 console.log('User:', user.value);
 
 
@@ -14,6 +15,11 @@ console.log('User:', user.value);
     { name: 'Home', href: '/', id: 1},
 
   ];
+
+  const signOut = async () => {
+  const { error } = await supabase.auth.signOut()
+  if (error) console.log(error)
+}
 
 </script>
 
@@ -29,6 +35,9 @@ console.log('User:', user.value);
         </li>
         <li v-if="user">
           <NuxtLink to="/dashboard" class="btn">Dashboard</NuxtLink>
+        </li>
+        <li v-if="user">
+          <button @click="signOut" class="btn">Logout</button>
         </li>
         <li v-else>
           <NuxtLink to="/login" class="btn">Login</NuxtLink>
