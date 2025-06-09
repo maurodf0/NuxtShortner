@@ -1,16 +1,25 @@
-<script setup>
+<script setup lang="ts">
 
 const supabase = useSupabaseClient()
 
-const mail = ref('');
-const psw = ref('');
+const email = ref<string>('');
+const password = ref<string>('');
+const error = ref<string | null>(null)
 
- const signIn = async (email, password) => {
-  const { error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
+ const signIn = async () => {
+  error.value = null;
+  const { error:signInError } = await supabase.auth.signInWithPassword({
+    email: email.value,
+    password: password.value,
   })
-  if (error) console.log(error)
+
+  if (error) {
+    error.value = signInError?.message || 'An error occurred during sign in'
+    console.error('Error signing in:', error.message)
+  } else {
+    // Redirect to dashboard or handle successful login
+    navigateTo('/dashboard')
+  }
 }
 
 const signInWithOAuth = async () => {
@@ -40,11 +49,11 @@ const signInWithOAuth = async () => {
      <form @submit.prevent="signIn">
       <div>
         <label  for="email" class="block mb-2 text-sm  font-medium text-gray-300">Email</label>
-        <input v-model="mail" type="email" id="email" class="input border p-2 rounded border-white/10 w-full mb-4" placeholder="Enter your email">
+        <input v-model="email" type="email" id="email" class="input border p-2 rounded border-white/10 w-full mb-4" placeholder="Enter your email">
       </div>
       <div>
         <label  for="password" class="block mb-2 text-sm font-medium text-gray-300">Password</label>
-        <input v-model="psw" type="password" id="password" class="input w-full border p-2 border-white/10 rounded mb-4" placeholder="Enter your Password">
+        <input v-model="password" type="password" id="password" class="input w-full border p-2 border-white/10 rounded mb-4" placeholder="Enter your Password">
       </div>
       <button type="submit" class="btn w-full py-3 rounded-full">Login</button>
       <p class="text-sm text-gray-400 mt-4">
@@ -52,6 +61,11 @@ const signInWithOAuth = async () => {
         <NuxtLink to="/register" class="text-white hover:underline">Register</NuxtLink>
       </p>
      </form>
+     <div v-if="error" class="text-red-500 mt-4">
+       <strong>Error:</strong> 
+       <!-- Display the error message --> 
+      {{ error }}
+     </div>
 
      </div>
 

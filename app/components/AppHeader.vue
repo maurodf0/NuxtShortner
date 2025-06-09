@@ -34,11 +34,12 @@ console.log('User:', user.value);
           </NuxtLink>
         </li>
         <li v-if="user">
-          <NuxtLink to="/dashboard" class="btn">Dashboard</NuxtLink>
+          <NuxtLink @click="signOut">Logout</NuxtLink>
         </li>
         <li v-if="user">
-          <button @click="signOut" class="btn">Logout</button>
+          <NuxtLink to="/dashboard" class="btn">Dashboard</NuxtLink>
         </li>
+       
         <li v-else>
           <NuxtLink to="/login" class="btn">Login</NuxtLink>
         </li>
