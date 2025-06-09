@@ -1,5 +1,13 @@
 <script setup>
 
+const supabaseAuth = useSupabaseAuthClient();
+
+const handleGithubLogin = () => {
+  supabaseAuth.auth.SignInWithOAuth({
+    provider: 'github',
+  })
+}
+
 </script>
 
 <template>
@@ -7,7 +15,7 @@
     <div class="container"> 
 
      <div class="card">
-      <button class="btn py-5 w-full rounded-full"> 
+      <button @click="handleGithubLogin" class="btn py-5 w-full rounded-full"> 
         Continue with Github
       </button>
 
