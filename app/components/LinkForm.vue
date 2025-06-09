@@ -1,8 +1,5 @@
 <script setup lang="ts">
 const url = ref<string>('');
-const links = ref ([{}]);
-
- console.log(url.value);
 
 const emits = defineEmits(['submitForm']); 
 const submitForm = () => {

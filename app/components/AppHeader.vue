@@ -1,5 +1,9 @@
 <script setup lang="ts">
 
+const user = useSupabaseUser();
+console.log('User:', user.value);
+
+
   interface Links {
     name: string;
     href: string;
