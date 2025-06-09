@@ -24,7 +24,7 @@ console.log('User:', user.value);
 </script>
 
 <template>
-  <div class="max-w-[1280px] border-b mx-auto p-4 flex justify-between items-center">
+  <div class="max-w-[1280px] border-b border-white/10 mx-auto p-4 flex justify-between items-center">
     <NuxtLink to="/"><h5 class="text-2xl font-bold">Nuxt Shortner</h5></NuxtLink>
     <nav>
       <ul class="flex space-x-4 items-center">
