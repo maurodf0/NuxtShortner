@@ -12,8 +12,7 @@ console.log('User:', user.value);
 
   const links: Links[] = [
     { name: 'Home', href: '/', id: 1},
-    { name: 'Login', href: '/login', id: 2},
-    { name: 'Dashboard', href: '/dashboard', id: 4},
+
   ];
 
 </script>
@@ -28,7 +27,13 @@ console.log('User:', user.value);
             {{ link.name }}
           </NuxtLink>
         </li>
-        <NuxtLink to="/register" class="btn">Register</NuxtLink>
+        <li v-if="user">
+          <NuxtLink to="/dashboard" class="btn">Dashboard</NuxtLink>
+        </li>
+        <li v-else>
+          <NuxtLink to="/login" class="btn">Login</NuxtLink>
+        </li>
+        
       </ul>
     </nav>
   </div>
