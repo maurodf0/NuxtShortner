@@ -23,9 +23,9 @@ const addLink = async (url: string) => {
   urls.value.push(newUrl);
 
   const data = await $fetch('/api/urls', {
-    method: 'POST',
-    body: newUrl
-  })
+  method: 'POST',
+  body: newUrl
+})
 
   if(data.ok) {
     alert('Link added successfully');
