@@ -11,13 +11,27 @@ const urls = ref<{
 
 
 
-const addLink = (url: string) => {
+const addLink = async (url: string) => {
   console.log('Adding link:', url)
-  urls.value.push({
-    shortKey: '/' + Math.random().toString(36).substring(2, 8),
+
+  const newUrl = {
     longUrl: url,
+    shortKey: '/' + Math.random().toString(36).substring(2, 8),
     id: Date.now().toString()
-  });
+
+  }
+  urls.value.push(newUrl);
+
+  const data = await $fetch('/api/urls', {
+    method: 'POST',
+    body: newUrl
+  })
+
+  if(data.ok) {
+    alert('Link added successfully');
+  } else {
+    alert('Error adding link');
+  }
 
 };
 
