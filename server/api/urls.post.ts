@@ -5,5 +5,10 @@ export default defineEventHandler(async (event) => {
   // Example: Save to DB or do something with the input
   console.log('Received URL:', body)
 
-  return { success: true }
+  // Return a response
+  return {
+    status: 'success',
+    message: 'URL received successfully',
+    data: body
+  }
 })
