@@ -2,6 +2,7 @@
 
 const user = useSupabaseUser();
 const supabase = useSupabaseClient();
+const response = ref<string | null>('');
 
 const urls = ref<{
   shortKey: string;
@@ -22,16 +23,18 @@ const addLink = async (url: string) => {
   }
   urls.value.push(newUrl);
 
-  const data = await $fetch('/api/urls', {
+  const res = await $fetch('/api/urls', {
   method: 'POST',
   body: newUrl
 })
 
-  if(data.ok) {
-    alert('Link added successfully');
+ console.log(res)
+
+  if (res.error) {
+    console.error('Error adding link:', res.error)
   } else {
-    alert('Error adding link');
-  }
+    response.value = res.message;
+  };
 
 };
 
@@ -44,6 +47,7 @@ const addLink = async (url: string) => {
   </section>
   <section class="container mb-10">
     <LinkForm @SubmitForm="addLink" />
+    {{ response }}
   </section>
 
   <section v-if="urls.length > 0" class="container">
