@@ -28,7 +28,7 @@ body::before {
 }
 
 .btn {
-  @apply text-white/80 py-2 px-4 rounded-full;
+  @apply text-white/80 py-2 px-4 rounded-full cursor-pointer transition-all duration-300 ease-in-out;
   background: linear-gradient(88.68deg, #d97706 -36.99%, #f59e0b 111.2%);
 }
 
