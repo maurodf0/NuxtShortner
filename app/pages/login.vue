@@ -4,7 +4,7 @@ const supabase = useSupabaseClient()
 
 const email = ref<string>('');
 const password = ref<string>('');
-const error = ref<string | null>(null)
+
 const login = ref<boolean>(true);
 const message = ref<string | null>(null)
 
@@ -13,15 +13,15 @@ watch(login, () => {
 })
 
  const signIn = async () => {
-  error.value = null;
-  const { error:signInError } = await supabase.auth.signInWithPassword({
+
+  const { error } = await supabase.auth.signInWithPassword({
     email: email.value,
     password: password.value,
   })
 
   if (error) {
-    error.value = signInError?.message || 'An error occurred during sign in'
-    console.error('Error signing in:', error.message)
+  console.log(error);
+  message.value = error?.message || 'An error occurred during sign in'
   } else {
     // Redirect to dashboard or handle successful login
     navigateTo('/dashboard')
@@ -106,10 +106,10 @@ const signUp = async () => {
 
       </div>
 
-     <div v-if="error" class="text-red-500 mt-4">
+     <div v-if="message" class="text-red-500 mt-4">
        <strong>Error:</strong> 
 
-      {{ error }}
+      {{ message }}
      </div>
 
      <div v-if="message" class="mt-4">
