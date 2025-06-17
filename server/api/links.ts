@@ -1,15 +1,16 @@
-import { serverSupabaseClient } from '#supabase/server'
+import { serverSupabaseClient, serverSupabaseUser } from '#supabase/server'
 
 
 export default defineEventHandler(async (event) => {
   const supabase = await serverSupabaseClient(event)
- 
-
+  const user = await serverSupabaseUser(event)
 
 
   const { data, error } = await supabase
     .from('links')
     .select('*')
+    .eq('user_id', user.identities[0].user_id)
+
   
 
   if (error) {
