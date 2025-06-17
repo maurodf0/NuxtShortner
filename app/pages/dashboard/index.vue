@@ -14,7 +14,9 @@ const urls = ref<{
   id: string;
 }[]>([]);
 
-
+onMounted(async () => {
+  await getLinks();
+});
 
 const addLink = async (url: string) => {
   console.log('Adding link:', url)
@@ -40,6 +42,16 @@ const addLink = async (url: string) => {
     response.value = res.message;
   };
 
+};
+
+const getLinks = async () => {
+  const res = await $fetch('/api/links');
+  if (res.error) {
+    console.error('Error getting links:', res.error);
+  } else {
+    urls.value = res;
+    console.log(urls.value);
+  };
 };
 
 </script>
