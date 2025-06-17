@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import { Database } from '@/types/database';
 
 definePageMeta({
   middleware: 'login'
 });
 
 const user = useSupabaseUser();
-const supabase = useSupabaseClient();
+const supabase = useSupabaseClient<Database>();
 const response = ref<string | null>('');
 
 const urls = ref<{
