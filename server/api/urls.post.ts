@@ -6,13 +6,6 @@ export default defineEventHandler(async (event) => {
 
   const { longUrl, shortKey } = body
 
-  // Ottieni l'utente autenticato
-  const { data: userData, error: userError } = await supabase.auth.getUser()
-
-  if (userError || !userData?.user) {
-    return { status: 'error', message: 'Authentication required' }
-  }
-
   const { data, error } = await supabase
     .from('links')
     .insert({

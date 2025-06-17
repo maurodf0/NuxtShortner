@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { Database } from '@/types/database';
+
 
 definePageMeta({
   middleware: 'login'
 });
 
 const user = useSupabaseUser();
-const supabase = useSupabaseClient<Database>();
+const supabase = useSupabaseClient();
 const response = ref<string | null>('');
 
 const urls = ref<{
@@ -25,8 +25,6 @@ const addLink = async (form: Object) => {
     shortKey: form.key,
     id: Date.now().toString()
   }
-  
-  urls.value.push(newUrl);
 
   const res = await $fetch('/api/urls', {
   method: 'POST',
