@@ -1,5 +1,5 @@
 <script setup lang="ts">
-
+const toast = useToast()
 
 definePageMeta({
   middleware: 'login'
@@ -33,19 +33,25 @@ const addLink = async (form: Object) => {
  console.log(res)
 
   if (res.error) {
-    console.error('Error adding link:', res.error)
+    toast.error({ title: 'Error!', message: 'Something went wrong.' })
   } else {
-    response.value = res.message;
+    toast.success({ title: 'Success!', message: 'Your action was completed successfully.' })
   };
 
 };
 
 const getLinks = async () => {
-  const res = await $fetch('/api/links');
-  if (res.error) {
-    console.error('Error getting links:', res.error);
-  } else {
-    urls.value = res.data;
+  try {
+    const res = await $fetch('/api/links');
+    if (res.error) {
+      console.error('Error getting links:', res.error);
+      toast.error({ title: 'Error!', message: 'Something went wrong.' })
+    } else {
+      urls.value = res.data;
+    };
+  } catch (error) {
+    console.error('Error:', error);
+    toast.error({ title: 'Error!', message: 'Something went wrong.' })
   };
 };
 
