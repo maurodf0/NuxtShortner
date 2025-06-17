@@ -13,7 +13,6 @@ watch(login, () => {
 })
 
  const signIn = async () => {
-
   const { error } = await supabase.auth.signInWithPassword({
     email: email.value,
     password: password.value,

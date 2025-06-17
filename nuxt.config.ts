@@ -15,7 +15,7 @@ export default defineNuxtConfig({
   supabase: {
     redirect: false,
   },
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase'],
+  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase', 'nuxt-toast'],
   css: ['@/assets/css/main.css'],
    nitro: {
     compressPublicAssets: true,
