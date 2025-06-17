@@ -6,7 +6,6 @@ definePageMeta({
 });
 
 const user = useSupabaseUser();
-const supabase = useSupabaseClient();
 const response = ref<string | null>('');
 
 const urls = ref<{
