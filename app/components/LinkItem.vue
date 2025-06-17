@@ -13,10 +13,10 @@ defineProps<{
       <div class="card flex justify-between items-center p-4 gap-4">
       <div class="link-info">
         <div class="text-xl font-bold text-amber-500">
-         {{link.shortKey}}
+         {{ link.key}}
         </div>
         <div class="text-sm text-white/50">
-          {{link.longUrl}}
+          {{link.long_url}}
         </div>
       </div>
 
