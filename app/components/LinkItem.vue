@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const toast = useToast();
+const config = useRuntimeConfig();
 
 const props = defineProps<{
   link: {
@@ -13,7 +14,8 @@ const { link } = props;
 
 const handleCopy = async () => {
   try {
-    await navigator.clipboard.writeText(link.key);
+    await navigator.clipboard.writeText(
+      `${config.public.appUrl}/${link.key}`);
     toast.success({ title: 'Success!', message: 'Link copied to clipboard.' });
   } catch {
     toast.error({ title: 'Error!', message: 'Something went wrong.' });

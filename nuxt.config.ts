@@ -15,6 +15,11 @@ export default defineNuxtConfig({
   supabase: {
     redirect: false,
   },
+  runtimeConfig: {
+    public: {
+      appUrl: process.env.APP_URL
+    } 
+  },
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase', 'nuxt-toast'],
   css: ['@/assets/css/main.css'],
    nitro: {
