@@ -1,14 +1,23 @@
-// server/api/urls.post.ts
+import { serverSupabaseClient } from '#supabase/server'
+
+
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
+  const supabase = await serverSupabaseClient(event)
+
+  const { url, shortKey } = body
 
   // Example: Save to DB or do something with the input
   console.log('Received URL:', body)
 
-  // Return a response
-  return {
-    status: 'success',
-    message: 'URL received successfully',
-    data: body
+  const { data, error } = await supabase
+    .from('links')
+    .insert({ long_url: url, key: shortKey })
+    .single()
+
+  if (error) {
+    return { status: 'error', message: error.message }
   }
+
+  return { status: 'success', message: 'URL saved successfully', data }
 })

@@ -49,8 +49,7 @@ const getLinks = async () => {
   if (res.error) {
     console.error('Error getting links:', res.error);
   } else {
-    urls.value = res;
-    console.log(urls.value);
+    urls.value = res.data;;
   };
 };
 
