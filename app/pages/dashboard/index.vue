@@ -19,23 +19,25 @@ onMounted(async () => {
 });
 
 const addLink = async (form: Object) => {
-  const newUrl = {
-    longUrl: form.long_url,
-    shortKey: form.key,
-    id: Date.now().toString()
-  }
-
-  const res = await $fetch('/api/urls', {
-  method: 'POST',
-  body: newUrl
-})
-
- console.log(res)
-
-  if (res.error) {
-    toast.error({ title: 'Error!', message: 'Something went wrong.' })
-  } else {
-    toast.success({ title: 'Success!', message: 'Your action was completed successfully.' })
+  try {
+    const newUrl = {
+      longUrl: form.long_url,
+      shortKey: form.key,
+      id: Date.now().toString()
+    }    
+    const res = await $fetch('/api/urls', {
+      method: 'POST',
+      body: newUrl
+    })    
+    if (res.error) {
+      console.error('Error adding link:', res.error)
+      toast.error({ title: 'Error!', message: 'Something went wrong.' })
+    } else {
+      toast.success({ title: 'Success!', message: 'Your action was completed successfully.' })
+    };
+  } catch (error) {
+    console.error('Error:', error);    
+    toast.error({ title: 'Error!', message: 'Something went wrong.' })  
   };
 
 };
