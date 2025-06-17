@@ -18,15 +18,13 @@ onMounted(async () => {
   await getLinks();
 });
 
-const addLink = async (url: string) => {
-  console.log('Adding link:', url)
-
+const addLink = async (form: Object) => {
   const newUrl = {
-    longUrl: url,
-    shortKey: '/' + Math.random().toString(36).substring(2, 8),
+    longUrl: form.long_url,
+    shortKey: form.key,
     id: Date.now().toString()
-
   }
+  
   urls.value.push(newUrl);
 
   const res = await $fetch('/api/urls', {
