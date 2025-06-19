@@ -34,6 +34,7 @@ const addLink = async (form: Object) => {
       toast.error({ title: 'Error!', message: 'Something went wrong.' })
     } else {
       toast.success({ title: 'Success!', message: 'Your action was completed successfully.' })
+      getLinks();
     };
   } catch (error) {
     console.error('Error:', error);    

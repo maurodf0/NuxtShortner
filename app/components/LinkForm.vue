@@ -15,7 +15,8 @@ const submitForm = () => {
 
   emits('submitForm', form );
   form.long_url = '';
-  form.key = '';
+  form.key = nanoid(6);
+
 };
 
 onMounted(() => {
