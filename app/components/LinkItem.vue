@@ -25,12 +25,12 @@ const handleCopy = async () => {
 </script>
 
 <template>
-      <div class="card flex justify-between items-center p-4 gap-4">
+      <div class="card flex justify-between items-center p-4 gap-4 overflow-hidden text-ellipsis">
       <div class="link-info">
-        <div class="text-xl font-bold text-amber-500">
+        <div class="text-xl font-bold text-amber-500 ">
          {{ link.key}}
         </div>
-        <div class="text-sm text-white/50">
+        <div class="text-sm text-white/50 max-w-lg overflow-hidden text-ellipsis">
           {{link.long_url}}
         </div>
       </div>
