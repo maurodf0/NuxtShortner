@@ -20,7 +20,12 @@ export default defineNuxtConfig({
       appUrl: process.env.APP_URL
     } 
   },
-  modules: ['@nuxtjs/tailwindcss', '@nuxtjs/supabase', 'nuxt-toast'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    '@nuxtjs/supabase',
+    'nuxt-toast',
+    '@nuxthub/core',
+  ],
   css: ['@/assets/css/main.css'],
    nitro: {
     compressPublicAssets: true,
