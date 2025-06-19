@@ -51,6 +51,12 @@ const signUp = async () => {
 
 }
 
+const changeForm = () => {
+  login.value = !login.value
+  email.value = ''
+  password.value = ''
+}
+
 
 </script>
 
@@ -80,7 +86,7 @@ const signUp = async () => {
       <button type="submit" class="btn w-full py-3 rounded-full">Login</button>
       <p class="text-sm text-gray-400 mt-4">
         Don't have an account? 
-        <span @click="login = !login" class="text-center text-white hover:underline">Register</span>
+        <span @click="changeForm" class="text-center text-white hover:underline">Register</span>
       </p>
      </form>  
 
@@ -99,7 +105,7 @@ const signUp = async () => {
       <button type="submit" class="btn w-full py-3 rounded-full">Register</button>
       <p class="text-sm text-gray-400 mt-4">
        Already have an account? 
-        <span @click="login = !login" class="text-center text-white hover:underline">Login</span>
+        <span @click="changeForm" class="text-center text-white hover:underline">Login</span>
       </p>
      </form>  
 
