@@ -18,10 +18,13 @@ const { data } = await useAsyncData('link', async () => {
   return data
 })
 
+
 //Redirect to long url
+console.log()
+useExternalRedirect(data.value.long_url)
 </script>
 
 <template>
-  {{ id }} <br>
+  {{ id }} <br>\
   {{ data }}
 </template>
