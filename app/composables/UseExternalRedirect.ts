@@ -1,4 +1,4 @@
-export default function useExternalRedirect(url: string, code:number = 302) {
+export default function useExternalRedirect(url: string, code:number = 302):Promise<void> {
 
   //check if is url
   if(/^https?:\/\//.test(url)) {
