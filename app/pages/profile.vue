@@ -8,15 +8,28 @@ definePageMeta({
 });
 
 
-const uploadAvatar = async () => {
+const uploadAvatar = async (e: Event) => {
+  const target = e.target as HTMLInputElement;
+  const file = target.files?.[0];
+
+  if (!file || !user.value) {
+    console.log("No file selected or user not logged in");
+    return;
+  }
+
   const { error } = await supabase.storage
     .from('avatars')
     .upload(
-      `avatar-${user?.id}.png`,
-      image.value,
-      { cacheControl: '3600' }
+      `avatar-${user.value.id}.png`,
+      file,
+      { cacheControl: '3600', upsert: true }
     );
-  if (error) console.log(error);
+
+  if (error) {
+    console.error(error);
+  } else {
+    console.log("Upload successful");
+  }
 };
 
 const signOut = async () => {
@@ -41,9 +54,12 @@ const signOut = async () => {
     <p class="text-gray-400">Name: {{ user?.user_metadata.full_name || 'N/A' }}</p>
     <p class="text-gray-400">Email: {{ user?.email || 'N/A' }}</p>
     <p class="text-gray-400">Avatar: <img :src="user?.user_metadata.avatar_url || 'https://avatars.dicebear.com/api/identicon/mauro.svg'" alt="Avatar" class="w-10 h-10 rounded-full" /></p>
-    <button @click="uploadAvatar" class="btn btn-primary mt-4">Upload Avatar</button>
-    <input type="file" class="hidden" accept="image/*" @change="uploadAvatar" />
-    <p class="text-gray-400">Created at: {{ user?.created_at || 'N/A' }}</p>
+   <form>
+      <label for="avatar">Upload Avatar</label>
+      <input class="btn text-center" type="file"  accept="image/*" @change="uploadAvatar" />
+    </form>
+    
+
   
     <button @click="signOut" class="btn btn-primary mt-4">Sign Out</button>
   </div>
