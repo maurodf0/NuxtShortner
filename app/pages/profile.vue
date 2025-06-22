@@ -3,9 +3,10 @@ const user = useSupabaseUser();
 const supabase = useSupabaseClient();
 const image = ref<string>('');
 
-if(!user){
-  navigateTo('/');
-}
+definePageMeta({
+  middleware: 'login'
+});
+
 
 const uploadAvatar = async () => {
   const { error } = await supabase.storage
